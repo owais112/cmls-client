@@ -1,0 +1,32 @@
+<div class="loader">
+  <p-progressSpinner strokeWidth="2" *ngIf="isLoading"></p-progressSpinner>
+</div>
+<div class="login-body">
+  <div class="login-panel"></div>
+  <p-messages [value]="msgs"></p-messages> 
+  <form [formGroup]="forgotForm" (ngSubmit)="forgot()" class="form-horizontal form-material" id="forgotForm" novalidate>
+  <div class="login-content">
+    <img src="assets/layout/images/sms-logo-login.jpg" alt="sms-layout" style="margin-bottom: 2em !important;"/>
+
+      <h1><span>Forgot</span> Password</h1>
+      <p>Welcome, please enter your email and instructions will be sent to you!</p>
+
+      <div class="login-input-wrapper">
+        <app-form-error-wrapper [control]="forgotForm.controls['email']" [controlName]="'Email'" [apiErrorType]="'email'">
+            <input class="form-control" type="text" formControlName="email" placeholder="Email" pInputText>
+            <i class="pi pi-user"></i>
+          </app-form-error-wrapper>
+          
+      </div>
+
+      
+      <button pButton type="button" (click)="forgot()" label="Send" [disabled]="forgotForm.invalid || isLoading">
+      </button>
+
+      <span class="pull-right" style="margin-left: 1em;">
+        Back to
+        <a [routerLink]="['/login']" id="login"> Login</a>? </span>
+      
+  </div>
+  </form>
+</div>

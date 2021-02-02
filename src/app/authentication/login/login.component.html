@@ -1,0 +1,61 @@
+<div class="loader">
+  <p-progressSpinner strokeWidth="2" *ngIf="isLoading"></p-progressSpinner>
+</div>
+<div class="login-body">
+  <div class="login-panel"></div>
+  <p-messages [value]="msgs"></p-messages> 
+  <form [formGroup]="loginForm" (ngSubmit)="login()" class="form-horizontal form-material" id="loginform" novalidate>
+  <div class="login-content">
+    <!-- <a href="/" class="logo-container"> -->
+      <img src="assets/layout/images/sms-logo-login.jpg" alt="sms-layout" style="margin-bottom: 2em !important;"/>
+      <!-- <span style="color:antiquewhite;">CMLS</span> -->
+  <!-- </a> -->
+
+      <h1><span>SIGN IN</span> TO CMLS</h1>
+      <p>Welcome, please use the form to sign-in.</p>
+      
+      <!-- <div class="login-input-wrapper">
+        <span class="help-block" style="color: #e0284f;" *ngIf="apiErrorMessage">
+          Invalid Email or Password.
+        </span>
+      </div> -->
+
+      <div class="login-input-wrapper">
+        <app-form-error-wrapper [control]="loginForm.controls['email']" [controlName]="'Email'" [apiErrorType]="'email'">
+            <input class="form-control" type="text" formControlName="email" placeholder="Email" pInputText>
+            <i class="pi pi-user"></i>
+          </app-form-error-wrapper>
+          
+      </div>
+
+      <div class="login-input-wrapper">
+        <app-form-error-wrapper [control]="loginForm.controls['password']" [controlName]="'Password'" [apiErrorType]="'password'">
+            <input class="form-control" type="password" autocomplete="off" formControlName="password" placeholder="Password" pInputText>
+            <i class="pi pi-lock"></i>
+          </app-form-error-wrapper>
+          <span class="pull-right" style="float: right;">
+            <!-- Don't have an account? -->
+            <a [routerLink]="['/forgot']" id="recoverform"> Forgot Password?</a> </span>
+          
+      </div>
+
+      <!-- <div class="login-input-wrapper">
+        <span class="pull-right">
+            Forgot
+            <a [routerLink]="['/forgot']" id="recoverform"> Password</a>? </span>
+          
+      </div> -->
+
+      <button pButton type="button" (click)="login()" label="Sign In">
+      </button>
+
+      <!-- <div class="login-input-wrapper"> -->
+        <!-- <span class="pull-right">
+            Don't have an account?
+            <a [routerLink]="['/signup']" id="recoverform"> Sign Up</a> </span>
+
+          
+     </div>  -->
+  </div>
+  </form>
+</div>

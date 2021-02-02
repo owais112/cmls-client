@@ -1,0 +1,38 @@
+<div class="loader">
+    <p-progressSpinner strokeWidth="2" *ngIf="isLoading"></p-progressSpinner>
+  </div>
+<div class="login-body">
+    <div class="login-panel"></div>
+    <p-messages [value]="msgs"></p-messages> 
+    <form [formGroup]="resetForm" (ngSubmit)="resetPassword()" class="form-horizontal form-material" id="resetForm" novalidate>
+    <div class="login-content">
+      <img src="assets/layout/images/sms-logo-login.jpg" alt="sms-layout" style="margin-bottom: 2em !important;"/>
+  
+        <h1><span>Change</span> Password</h1>
+        <!-- <p>Welcome, please enter your email and instructions will be sent to you!</p> -->
+  
+        <div class="login-input-wrapper">
+          <app-form-error-wrapper [control]="resetForm.controls['password']" [controlName]="'Password'" [apiErrorType]="'password'">
+              <input class="form-control" type="password" formControlName="password" placeholder="Password" pInputText>
+              <i class="pi pi-user"></i>
+            </app-form-error-wrapper>
+        </div>
+
+        <div class="login-input-wrapper">
+              <app-form-error-wrapper [control]="resetForm.controls['confirmPassword']" [controlName]="'Confirm Password'" [apiErrorType]="'confirmPassword'">
+                  <input class="form-control" type="password" formControlName="confirmPassword" placeholder="Confirm Password" pInputText>
+                  <i class="pi pi-user"></i>
+                </app-form-error-wrapper>
+              
+          </div>
+
+  
+        <button pButton type="button" (click)="resetPassword()" label="Recover" [disabled]="resetForm.invalid || isLoading">
+        </button>
+        
+        <span class="pull-right" style="margin-left: 1em;">
+            Back to
+            <a [routerLink]="['/login']" id="login"> Login</a>? </span>
+    </div>
+    </form>
+  </div>

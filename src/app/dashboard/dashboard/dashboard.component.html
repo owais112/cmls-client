@@ -1,0 +1,136 @@
+<div class="loader">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s" *ngIf="isLoading"></p-progressSpinner>
+</div>
+<div class="layout-dashboard">
+    <div class="p-grid">
+        <div class="p-col-12 p-lg-6 p-xl-4">
+            <div class="overview-box sales">
+                <i class="overview-icon pi pi-users"></i>
+                <span class="overview-title">Total Students</span>
+                <i class="overview-arrow pi pi-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    {{totalStudents}}
+                </div>
+                <div class="overview-subinfo">
+                    <!-- 7% more than yesterday -->
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12 p-lg-6 p-xl-4">
+            <div class="overview-box users">
+                <i class="overview-icon pi pi-dollar"></i>
+                <span class="overview-title">Paid</span>
+                <i class="overview-arrow pi pi-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    $ {{paidAmount}}
+                </div>
+                <div class="overview-subinfo">
+                    <!-- 21% more than yesterday -->
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12 p-lg-6 p-xl-4">
+            <div class="overview-box views">
+                <i class="overview-icon pi pi-dollar"></i>
+                <span class="overview-title">UnPaid</span>
+                <i class="overview-arrow pi pi-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    $ {{unPaidAmount}}
+                </div>
+                <div class="overview-subinfo">
+                    <!-- 2% more than yesterday -->
+                </div>
+            </div>
+        </div>
+        <!-- <div class="p-col-12 p-lg-6 p-xl-3">
+            <div class="overview-box checkin">
+                <i class="overview-icon pi pi-map-marker"></i>
+                <span class="overview-title">Last One Month Enrollments</span>
+                <i class="overview-arrow pi pi-chevron-circle-up"></i>
+                <div class="overview-numbers">
+                    4211
+                </div>
+                <div class="overview-subinfo">
+                    18% more than yesterday
+                </div>
+            </div>
+        </div> -->
+
+        <div class="p-col-12 p-lg-8">
+            <div class="card card-w-title statistics">
+                <h1>Statistics</h1>
+                <p-chart type="bar" [data]="barData" [options]="chartOptions"></p-chart>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-lg-4">
+            <div class="user-card card">
+                <div class="user-card-header">
+                    <img src="assets/layout/images/dashboard/bg-header.png" alt="sms" class="profile-image" />
+                </div>
+                <div class="user-card-content">
+                    <img src="assets/layout/images/avatar.png" alt="apollo-layout" />
+                    <!-- <p-menu #menu popup="popup" [model]="items" appendTo="body"></p-menu>
+                    <button pButton id="user-button" type="button" icon="pi pi-bars" class="secondary-btn" (click)="menu.toggle($event)"></button> -->
+
+                    <div class="user-card-name">
+                        <span>Admin CMLS</span>
+                    </div>
+
+                    <div class="user-detail">
+                        <ul>
+                            <!-- <li class="clearfix">
+                                <i class="pi pi-list"></i>
+                                <span class="project-title">Tasks</span>
+                                <span class="project-detail">3 open</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 50%"></div>
+                                </div>
+                            </li> -->
+                            <li class="clearfix">
+                                <i class="pi pi-users"></i>
+                                <span class="project-title">Total Students</span>
+                                <span class="project-detail">{{totalStudents}}</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" [ngStyle]="{'width':totalStudentsPercent}"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="pi pi-dollar"></i>
+                                <span class="project-title">Paid</span>
+                                <span class="project-detail">{{paidAmountPercent}}</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" [ngStyle]="{'width':paidAmountPercent}"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="pi pi-money-bill"></i>
+                                <span class="project-title">UnPaid</span>
+                                <span class="project-detail">{{unPaidAmountPercent}}</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" [ngStyle]="{'width':unPaidAmountPercent}"></div>
+                                </div>
+                            </li>
+                            <!-- <li class="clearfix">
+                                <i class="pi pi-money-bill"></i>
+                                <span class="project-title">Paid</span>
+                                <span class="project-detail">+45</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 45%"></div>
+                                </div>
+                            </li>
+                            <li class="clearfix">
+                                <i class="pi pi-chart-bar"></i>
+                                <span class="project-title">UnPaid</span>
+                                <span class="project-detail">+75</span>
+                                <div class="project-progressbar">
+                                    <div class="project-progressbar-value" style="width: 75%"></div>
+                                </div>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

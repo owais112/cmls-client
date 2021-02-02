@@ -1,0 +1,111 @@
+<div class="loader">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s" *ngIf="isLoading"></p-progressSpinner>
+</div>
+<div class="ui-fluid" *ngIf="isAdmin">
+    <!-- <div class="p-grid"> -->
+        <form [formGroup]="rolesForm" (ngSubmit)="createRole()" class="form-horizontal form-material"
+            id="rolesForm">
+            <div class="p-col-12">
+                <div class="ui-messages ui-widget ui-corner-all ui-messages-success"
+                    style="margin: 0 0 1em 0; display: block">
+                    <ul>
+                        <li>
+                            <span class="ui-messages-icon pi pi-check"></span>
+                            <span class="ui-messages-summary" style="font-size:16px">Assign New Role.</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="card no-margin">
+                    <!-- <h1>Assign New Role</h1> -->
+                    <div class="p-grid">
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="bTitleDD">Role</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="rolesForm.controls['role']"
+                                [controlName]="'Role'" [apiErrorType]="'role'">
+                                <p-dropdown id="roleDD" [options]="roleDD" formControlName="role"></p-dropdown>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">User Name</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="rolesForm.controls['username']"
+                                [controlName]="'User Name'" [apiErrorType]="'username'">
+                                <input class="form-control" type="text" formControlName="username"
+                                    placeholder="User Name" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Email</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="rolesForm.controls['email']"
+                                [controlName]="'Email'" [apiErrorType]="'email'">
+                                <input class="form-control" type="text" formControlName="email" placeholder="Email"
+                                    pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-1"></div>
+                        <div class="p-col-12 p-md-2"></div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Password</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="rolesForm.controls['password']"
+                                [controlName]="'Password'" [apiErrorType]="'password'">
+                                <input class="form-control" type="password" formControlName="password"
+                                    placeholder="Password" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+
+                    </div>
+                </div>
+                
+    </div>
+    <div class="p-grid">
+        <div class="p-col-12 p-md-5"></div>
+        <div class="p-col-12 p-md-2">
+            <button pButton type="button" label="Clear" style="margin-bottom:10px" (click)="onReset()"
+            class="ui-button-warning"></button>
+        </div>
+        <div class="p-col-12 p-md-2">
+            <button pButton type="button" label="Save" (click)="onSaveRole()" style="margin-bottom:10px"
+            class="ui-button-success"></button>
+        </div>
+        <div class="p-col-12 p-md-3"></div>
+    </div>
+    </form>
+<!-- </div> -->
+</div>
+
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<p-messages [value]="msgs"></p-messages>

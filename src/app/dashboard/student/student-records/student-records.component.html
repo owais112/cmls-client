@@ -1,0 +1,106 @@
+<div class="loader">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s" *ngIf="loading"></p-progressSpinner>
+</div>
+<div class="p-grid">
+    <div class="p-col-12">
+        <div class="card card-w-title">
+            <p-table #dt [columns]="cols" styleClass="ui-table-cars" [value]="data" [paginator]="true" [rows]="10" dataKey="firstName" selectionMode="single" [(selection)]="selectedRow">
+                <ng-template pTemplate="caption">
+                    Student Records
+                    <div class="ui-table-globalfilter-container">
+                        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:250px;">
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field" [ngStyle]="{'width': col.width}">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field"></p-sortIcon>
+                        </th>
+                        <th style="width: 8em; text-align: center;" *ngIf="isAdmin">
+                            <button pButton type="button" icon="pi pi-file-pdf" (click)="printReport()"></button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th *ngFor="let col of columns" [ngSwitch]="col.field" style="padding: .5em;">
+                            <input *ngSwitchCase="'regNo'" pInputText type="text" placeholder="Search" class="ui-column-filter" style="width: 100%; margin-top: 0;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                            <input *ngSwitchCase="'firstName'" pInputText type="text" placeholder="Search" class="ui-column-filter" style="width: 100%; margin-top: 0;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                            <input *ngSwitchCase="'lastName'" pInputText type="text" placeholder="Search" class="ui-column-filter" style="width: 100%; margin-top: 0;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                            <p-dropdown *ngSwitchCase="'qualificationTitle'" appendTo="body" [options]="qualificationTitleDD" styleClass="ui-column-filter" [showClear]="true" [style]="{'min-width':'1em', 'width':'100%', 'margin-top':'0'}" placeholder="Select a Title" (onChange)="dt.filter($event.value, col.field, 'equals')">
+                                <ng-template let-item pTemplate="selectedItem">
+                                    <span style="vertical-align:middle; margin-left: .5em">{{item.label}}</span>
+                                </ng-template>
+                                <ng-template let-title pTemplate="item">
+                                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                                        <div>{{title.label}}</div>
+                                    </div>
+                                </ng-template>
+                            </p-dropdown>
+                            <input *ngSwitchCase="'email'" pInputText type="text" placeholder="Search" class="ui-column-filter" style="width: 100%; margin-top: 0;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                            <input *ngSwitchCase="'phone'" pInputText type="text" placeholder="Search" class="ui-column-filter" style="width: 100%; margin-top: 0;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                            <input *ngSwitchCase="'checkPaid'" pInputText type="text" placeholder="Search" class="ui-column-filter" style="width: 100%; margin-top: 0;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        </th>
+                        <th style="width: 8em;" *ngIf="isAdmin">
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr [pSelectableRow]="rowData" [pEditableRow]="rowData">
+                        <td>{{rowData.regNo}}</td>
+                        <td>{{rowData.firstName}}</td>
+                        <td>{{rowData.lastName}}</td>
+                        <td>
+                            {{rowData.qualificationTitle}}
+                        </td>
+                        <td>{{rowData.email}}</td>
+                        <td>{{rowData.phone}}</td>
+                        <td>{{rowData.checkPaid}}</td>
+                        <td *ngIf="isAdmin">
+                            <button pButton type="button" [routerLink]="['/dashboard/student/searchstudent']" (click)="onModify(rowData)" class="ui-button-success" icon="pi pi-search" style="margin-right: .5em"></button>
+                            <button pButton type="button" [routerLink]="['/dashboard/student/modifystudent']" (click)="onModify(rowData)" class="ui-button-warning" icon="pi pi-pencil">
+                               </button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<div id="print-section" style="display: none;" *ngIf="isAdmin">
+    <table class="blueTable">
+      <thead>
+        <tr>
+          <th class="align-center">Registration No.</th>
+          <th class="align-center">Satellite Center</th>
+          <th style="width: 20%;">Full Name</th>
+          <th class="align-center">Email</th>
+          <th class="align-center">Date of Birth</th>
+          <th class="align-center">Gender</th>
+          <th>Home Address</th>
+          <th style="width: 20%;">Mobile No.</th>
+          <th>Qualification Title</th>
+          <th class="align-center">Fee Offered</th>
+          <th class="align-center">Paid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of data">
+          <td class="align-center">{{p.regNo}}</td>
+          <td class="align-center">{{p.satelliteCenter}}</td>
+          <td style="width: 20%;">{{p.firstName}} {{p.lastName}}</td>
+          <td class="align-center">{{p.email}}</td>
+          <td class="align-center">{{p.dob | date: 'dd/MM/yyyy'}}</td>
+          <td class="align-center">{{p.gender}}</td>
+          <td>{{p.homeAddress}}</td>
+          <td style="width: 20%;">{{p.mobile}}</td>
+          <td>{{p.qualificationTitle}}</td>
+          <td class="align-center">{{p.feeOffered}}</td>
+          <td class="align-center">{{p.checkPaid}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    
+  </div>

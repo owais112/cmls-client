@@ -1,0 +1,72 @@
+.loader-screen {
+    width: 100%;
+    min-height: 100%;
+    background-color: #212121;
+    position: absolute;
+  }
+  .loader-screen .loader {
+    margin: 0 auto;
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    z-index: 500;
+  }
+  .loader-screen .loader > div {
+    height: 100%;
+    width: 8px;
+    display: inline-block;
+    float: left;
+    margin-left: 2px;
+    animation: delay 0.8s infinite ease-in-out;
+  }
+  .loader-screen .loader .bar1 {
+    background-color: #754fa0;
+  }
+  .loader-screen .loader .bar2 {
+    background-color: #09b7bf;
+    animation-delay: -0.7s;
+  }
+  .loader-screen .loader .bar3 {
+    background-color: #90d36b;
+    animation-delay: -0.6s;
+  }
+  .loader-screen .loader .bar4 {
+    background-color: #f2d40d;
+    animation-delay: -0.5s;
+  }
+  .loader-screen .loader .bar5 {
+    background-color: #fcb12b;
+    animation-delay: -0.4s;
+  }
+  .loader-screen .loader .bar6 {
+    background-color: #ed1b72;
+    animation-delay: -0.3s;
+  }
+
+  @keyframes ui-progress-spinner-color {
+    100%,
+    0% {
+        stroke: #d62d20;
+    }
+    40% {
+        stroke: #0057e7;
+    }
+    66% {
+        stroke: #008744;
+    }
+    80%,
+    90% {
+        stroke: #ffa700;
+    }
+}
+
+.loader {
+    margin-left: 40%;
+    margin-top: 25em;
+    position: fixed;
+} 

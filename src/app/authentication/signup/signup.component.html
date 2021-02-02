@@ -1,0 +1,79 @@
+<!-- <div class="loader">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s" *ngIf="isLoading"></p-progressSpinner>
+</div> -->
+<body class="wizard-body">
+  <div class="wizard-wrapper">
+      <div class="wizard-header">
+          <div class="wizard-logo">
+              <img src="assets/layout/images/sms-logo.png" alt="sms-layout"/><span style="color:darkblue;">CMLS</span>
+          </div>
+      </div>
+  
+      <div class="wizard-content">
+          <div class="wizard-card">
+              <div class="wizard-card-header">
+                  <div class="wizard-card-header-banner">
+                      <div class="banner-logo">
+                          <img src="assets/layout/images/extensions/babylon-icon.png" alt="sms-layout"/>
+                      </div>
+                      <div class="banner-image banner-1" [ngClass]="{' active-banner': activeTab === 'register'}">
+                          <h1>Create a CMLS Account</h1>
+                          <img src="assets/layout/images/extensions/bg-header-2.png" alt="sms-layout"/>
+                      </div>
+                  </div>
+                  <div class="wizard-card-tabs">
+                      <div class="wizard-card-tab register-tab" [ngClass]="{'selected-tab': activeTab === 'register'}">
+                          REGISTER NOW
+                      </div>
+                  </div>
+              </div>
+              
+            <p-messages [value]="msgs"></p-messages> 
+              <form [formGroup]="signupForm" (ngSubmit)="signup()" class="form-horizontal form-material" id="signupform">
+              <div class="wizard-card-content register" [ngClass]="{'active-content': activeTab === 'register'}">
+                  <div class="warning" style="justify-content: center;margin-right: 13em;">
+                      <i class="pi pi-exclamation-circle"></i>
+                      <p>You must have an account to signup with CMLS.</p>
+                  </div>
+  
+                  <div class="wizard-forms-wrapper p-grid p-nogutter">
+                    <div class="p-col-12 p-md-3 wizard-forms"></div>
+                      <div class="p-col-12 p-md-6 wizard-forms">
+                          <label for="name" class="form-label">Enter Username</label>
+                          <app-form-error-wrapper [control]="signupForm.controls['username']" [controlName]="'User Name'" [apiErrorType]="'username'">
+                            <input class="form-control" type="text" formControlName="username" placeholder="User Name" pInputText>
+                          </app-form-error-wrapper>
+                          <!-- <input id="username" type="text" pInputText/> -->
+  
+                          <label for="email" class="form-label">Enter Email</label>
+                          <app-form-error-wrapper [control]="signupForm.controls['email']" [controlName]="'Email'" [apiErrorType]="'email'">
+                            <input class="form-control" type="text" formControlName="email" placeholder="Email" pInputText>
+                          </app-form-error-wrapper>
+                          <!-- <input id="email" type="text" pInputText/> -->
+  
+                          <label for="password" class="form-label">Enter Password</label>
+                          <app-form-error-wrapper [control]="signupForm.controls['password']" [controlName]="'Password'" [apiErrorType]="'password'">
+                            <input class="form-control" type="password" autocomplete="off" formControlName="password" placeholder="Password" pInputText>
+                          </app-form-error-wrapper>
+                          <!-- <input id="password" type="password" pInputText/> -->
+                      </div>
+                      <div class="p-col-12 p-md-3 wizard-forms"></div>
+                  </div>
+  
+                  <div class="wizard-button">
+                      <button pButton class="continue-button" type="button" label="REGISTER" style="margin-right: 2em"
+                              (click)="signup()"></button>
+
+                              <span class="pull-right" style="color: aliceblue;margin-right: 2em" >
+                                Have an account?
+                                <a [routerLink]="['/login']" id="recoverform"> Log in now</a> </span>
+                  </div>
+              </div>
+              </form>
+              
+          </div>
+      </div>
+      
+  </div>
+  </body>
+  

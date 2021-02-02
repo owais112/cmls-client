@@ -1,0 +1,581 @@
+<div class="loader">
+    <p-progressSpinner [style]="{width: '50px', height: '50px'}" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s" *ngIf="isLoading"></p-progressSpinner>
+</div>
+<!-- <div class="loader">
+    <p-progressSpinner *ngIf="isLoading"></p-progressSpinner>
+  </div> -->
+<div class="ui-fluid">
+    <div class="p-grid">
+        
+        <form [formGroup]="createStudentForm" (ngSubmit)="modifyStudent()" class="form-horizontal form-material"
+            id="createStudentForm">
+            <div class="p-col-12">
+                <div class="ui-messages ui-widget ui-corner-all ui-messages-success"
+                    style="margin: 0 0 1em 0; display: block">
+                    <ul>
+                        <li>
+                            <span class="ui-messages-icon pi pi-check"></span>
+                            <span class="ui-messages-summary" style="font-size:16px">Modify Student.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card no-margin">
+                    <h1>Basic Information</h1>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Registration No.</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['regNo']"
+                                [controlName]="'Registiration No.'" [apiErrorType]="'regNo'">
+                                <input class="form-control" type="text" formControlName="regNo"
+                                    placeholder="Registiration No." pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Satellite Center</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['satelliteCenter']"
+                                [controlName]="'Satellite Center'" [apiErrorType]="'satelliteCenter'">
+                                <input class="form-control" type="text" formControlName="satelliteCenter"
+                                    placeholder="Satellite Center" pInputText>
+                            </app-form-error-wrapper>
+
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="bTitleDD">Title</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['titleName']"
+                                [controlName]="'Title'" [apiErrorType]="'titleName'">
+                                <p-dropdown id="bTitleDD" [options]="bTitleDD" formControlName="titleName"></p-dropdown>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Middle Name</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['sureName']"
+                                [controlName]="'Middle Name'" [apiErrorType]="'sureName'">
+                                <input class="form-control" type="text" formControlName="sureName"
+                                    placeholder="Middle Name" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">First Name</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['firstName']"
+                                [controlName]="'First Name'" [apiErrorType]="'firstName'">
+                                <input class="form-control" type="text" formControlName="firstName"
+                                    placeholder="First Name" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Last Name</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['lastName']"
+                                [controlName]="'Last Name'" [apiErrorType]="'lastName'">
+                                <input class="form-control" type="text" formControlName="lastName"
+                                    placeholder="Last Name" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Email</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['email']"
+                                [controlName]="'Email'" [apiErrorType]="'email'">
+                                <input class="form-control" type="text" formControlName="email" placeholder="Email"
+                                    pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Date of Birth</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['dob']"
+                                [controlName]="'Date of Birth'" [apiErrorType]="'dob'">
+                                <p-calendar id="showIcon" [showIcon]="true" formControlName="dob" dateFormat="dd/mm/yy"
+                                    placeholder="Date of Birth"></p-calendar>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            Gender
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <div class="p-grid">
+                                <div class="p-col-4">
+                                    <p-radioButton name="rg" value="Male" label="Male" formControlName="gender"
+                                        inputId="preopt1"></p-radioButton>
+                                </div>
+                                <div class="p-col-4">
+                                    <p-radioButton name="rg" value="Female" label="Female" formControlName="gender"
+                                        inputId="preopt2"></p-radioButton>
+                                </div>
+                                <div class="p-col-4">
+                                    <p-radioButton name="rg" value="Other" label="Other" formControlName="gender"
+                                        inputId="preopt3"></p-radioButton>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Home Address</label>
+                        </div>
+                        <div class="p-col-12 p-md-10">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['homeAddress']"
+                                [controlName]="'Home Address'" [apiErrorType]="'homeAddress'">
+                                <input class="form-control" type="text" formControlName="homeAddress"
+                                    placeholder="Home Address" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Work Address</label>
+                        </div>
+                        <div class="p-col-12 p-md-10">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['workAddress']"
+                                [controlName]="'Work Address'" [apiErrorType]="'workAddress'">
+                                <input class="form-control" type="text" formControlName="workAddress"
+                                    placeholder="Work Address" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Mobile No.</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['mobile']"
+                                [controlName]="'Mobile No.'" [apiErrorType]="'mobile'">
+                                <input type="text" pInputText placeholder="Mobile No." formControlName="mobile">
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Phone</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['phone']"
+                                [controlName]="'Phone'" [apiErrorType]="'phone'">
+                                <input type="text" pInputText placeholder="Phone" formControlName="phone">
+                            </app-form-error-wrapper>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card no-margin">
+                    <h1>Qualification Section</h1>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-2">
+                            <label for="qualificationTitleDD">Qualification Title</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['qualificationTitle']"
+                                [controlName]="'Qualification Title'" [apiErrorType]="'qualificationTitle'">
+                                <p-dropdown id="qualificationTitleDD" [options]="qualificationTitleDD"
+                                    formControlName="qualificationTitle"></p-dropdown>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Start Date</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['qStartDate']"
+                                [controlName]="'Start Date'" [apiErrorType]="'qStartDate'">
+                                <p-calendar id="showIcon" [showIcon]="true" formControlName="qStartDate" dateFormat="dd/mm/yy"
+                                    placeholder="Start Date"></p-calendar>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Expected End Date</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['qExpectedDate']"
+                                [controlName]="'Expected End Date'" [apiErrorType]="'qExpectedDate'">
+                                <p-calendar id="showIcon" [showIcon]="true" formControlName="qExpectedDate" dateFormat="dd/mm/yy"
+                                    placeholder="Expected End Date"></p-calendar>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Actual End Date</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['qActualDate']"
+                                [controlName]="'Actual End Date'" [apiErrorType]="'qActualDate'">
+                                <p-calendar id="showIcon" [showIcon]="true" formControlName="qActualDate" dateFormat="dd/mm/yy"
+                                    placeholder="Actual End Date"></p-calendar>
+                            </app-form-error-wrapper>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="card no-margin">
+                    <h1>Fee Section</h1>
+                    <div class="p-grid">
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Total Fee</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['totalFee']"
+                                [controlName]="'Total Fee'" [apiErrorType]="'totalFee'">
+                                <input class="form-control" type="number" formControlName="totalFee"
+                                    placeholder="Total Fee" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+                        <div class="p-col-12 p-md-2">
+                            <label for="input">Fee Offered</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['feeOffered']"
+                                [controlName]="'Fee Offered'" [apiErrorType]="'feeOffered'">
+                                <input class="form-control" type="number" formControlName="feeOffered"
+                                    placeholder="Fee Offered" pInputText>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2">
+                            <label for="qualificationTitleDD">Select Paid/UnPaid</label>
+                        </div>
+                        <div class="p-col-12 p-md-4">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['checkPaid']"
+                                [controlName]="'Select Paid/UnPaid'" [apiErrorType]="'checkPaid'">
+                                <p-dropdown id="checkPaidDD" [options]="checkPaidDD" formControlName="checkPaid"
+                                    (onChange)=onChangePaidDD($event.value)>
+                                </p-dropdown>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2" *ngIf="isPaid">
+                            <label for="input">Paid Date</label>
+                        </div>
+                        <div class="p-col-12 p-md-4" *ngIf="isPaid">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['fPaidDate']"
+                                [controlName]="'Paid Date'" [apiErrorType]="'fPaidDate'">
+                                <p-calendar id="showIcon" [showIcon]="true" formControlName="fPaidDate" dateFormat="dd/mm/yy"
+                                    placeholder="Paid Date"></p-calendar>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-2" *ngIf="!isPaid">
+                            <label for="input">Installments</label>
+                        </div>
+                        <div class="p-col-12 p-md-4" *ngIf="!isPaid">
+                            <app-form-error-wrapper [control]="createStudentForm.controls['installment']"
+                                [controlName]="'Installments'" [apiErrorType]="'installment'">
+                                <p-dropdown id="installmentDD" [options]="installmentDD" formControlName="installment"
+                                    (onChange)=onChangeInstallmentDD($event.value)>
+                                </p-dropdown>
+                            </app-form-error-wrapper>
+                        </div>
+
+                        <div class="p-col-12 p-md-12" formArrayName="installments" *ngIf="!isPaid">
+                            <div *ngFor="let creds of createStudentForm.get('installments')['controls']; let i = index">
+                                <ng-container [formGroupName]="i">
+                                    <div class="p-grid">
+                                        <div class="p-col-4">
+                                            <label>Amount </label>
+                                            <input class="form-control" type="number" formControlName="iamount"
+                                                placeholder="Amount" pInputText>
+                                        </div>
+                                        <div class="p-col-4">
+                                            <label>Paid Date </label>
+                                            <p-calendar id="showIcon" [showIcon]="true" formControlName="iPaidDate" dateFormat="dd/mm/yy"
+                                                placeholder="Paid Date"></p-calendar>
+                                        </div>
+                                        <div class="p-col-4" style="margin-top: 1em !important;">
+                                            <label>IsPaid </label>
+                                            <p-checkbox binary="true" formControlName="iCheckPaid"></p-checkbox>
+                                        </div>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <p-accordion>
+                    <p-accordionTab header="Attachment Section">
+                        <div class="card no-margin">
+                            <!-- <h1>Attachment Section</h1> -->
+                            <div class="p-grid">
+                                <div class="p-col-12 p-md-12">
+                                    <div class="card card-w-title">
+                                        <p-accordion>
+                                            <p-accordionTab header="Curriculum Vitae">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form name="myfile[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form,'cirriculumVitae')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.cirriculumVitae'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+                                         <p-accordion>
+                                            <p-accordionTab header="Transcript">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form2 name="myfile2[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form2,'transcript')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.transcript'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Course Completion Letter">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form3 name="myfile3[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form3,'courseCompletion')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.courseCompletion'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Offer Letter">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form4 name="myfile4[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form4,'offerLetter')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.offerLetter'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Enrolment Letter">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form5 name="myfile5[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form5,'enrollmentLetter')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.enrollmentLetter'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Withdrawal letter">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form6 name="myfile6[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form6,'withDrawalLetter')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.withDrawalLetter'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Feedback Form">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form7 name="myfile7[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form7,'feedbackForm')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.feedbackForm'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Warning Letter">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form8 name="myfile8[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form8,'warningLetter')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.warningLetter'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion>
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Previous Qualification at CMLS 1">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form9 name="myfile9[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form9,'previousQualification1')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.previousQualification1'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion> 
+
+                                        <p-accordion>
+                                            <p-accordionTab header="Previous Qualification at CMLS 2">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form10 name="myfile10[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form10,'previousQualification2')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.previousQualification2'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion> 
+
+                                        
+                                        <p-accordion>
+                                            <p-accordionTab header="Other Letter">
+                                                <div class="card no-margin">
+                                                    <p-toast [style]="{marginTop: '80px'}"></p-toast>
+                                                    <p-fileUpload #form11 name="myfile11[]" customUpload="true"
+                                                        (uploadHandler)="onUpload($event,form11,'otherLetter')"
+                                                        accept="image/*,application/vnd.ms-excel,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                                                        maxFileSize="5000000">
+                                                        <ng-template pTemplate="content">
+                                                            <detail-upload [fileUpload]='attachmentPath.otherLetter'>
+                                                            </detail-upload>
+                                                        </ng-template>
+                                                    </p-fileUpload>
+                                                </div>
+                                            </p-accordionTab>
+                                        </p-accordion> 
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+                
+                <p-accordion>
+                    <p-accordionTab header="Mail Section">
+                        <div class="card no-margin">
+                            <form [formGroup]="emailForm" (ngSubmit)="onSendEmail()" class="form-horizontal form-material" id="emailForm">
+                            <div class="p-grid">
+                                <div class="p-col-12 p-md-12">
+                                    <div class="card card-w-title">
+                                        <div class="p-col-12 p-md-12">
+                                            <app-form-error-wrapper [control]="emailForm.controls['subject']" [controlName]="'Subject'" [apiErrorType]="'subject'">
+                                                <input class="form-control" type="text" formControlName="subject"
+                                                    placeholder="Subject" pInputText>
+                                            </app-form-error-wrapper>
+                                        </div>
+                                        <div class="p-col-12 p-md-12">
+                                            <app-form-error-wrapper [control]="emailForm.controls['message']"  [controlName]="'Your Message'" [apiErrorType]="'message'">
+                                                <textarea [rows]="3" [cols]="30" pInputTextarea
+                                                    placeholder="Your Message" autoResize="autoResize" formControlName="message"></textarea>
+                                            </app-form-error-wrapper>
+                                        </div>
+                                        <div class="p-col-12 p-md-2">
+                                            <button pButton type="button" label="Send Email" (click)="onSendEmail()"
+                                                style="margin-bottom:10px" class="ui-button-raised"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        </div>
+                    </p-accordionTab>
+                </p-accordion>
+
+
+            </div>
+            <div class="p-grid">
+                <div class="p-col-12 p-md-6"></div>
+                <div class="p-col-12 p-md-2">
+                    <button pButton type="button" label="Delete" style="margin-bottom:10px" (click)="onDeleteStudent()"
+                        class="ui-button-danger"></button>
+                </div>
+                <div class="p-col-12 p-md-2">
+                    <button pButton type="button" label="Clear" style="margin-bottom:10px" (click)="onReset()"
+                        class="ui-button-warning"></button>
+                </div>
+                <div class="p-col-12 p-md-2">
+                    <button pButton type="button" label="Save" (click)="onSaveStudent()" style="margin-bottom:10px"
+                        class="ui-button-success"></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+<!-- <p-messages [value]="msgs"></p-messages> -->
+
