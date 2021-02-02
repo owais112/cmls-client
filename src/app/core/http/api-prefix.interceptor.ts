@@ -21,7 +21,7 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     request = request.clone({
-      url: 'http://localhost:3000/' + request.url,
+      url: 'https://sms12-api.herokuapp.com/' + request.url,
       setHeaders: {
         Authorization: `Bearer ${this._AuthenticationService.accessToken}`
       }
@@ -30,3 +30,6 @@ export class ApiPrefixInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 }
+
+// http://localhost:3000/
+// https://sms12-api.herokuapp.com/

@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://loacalUrl:3000/',
-  loacalUrl: 'http://localhost:3000/',
+  serverUrl: 'https://sms12-api.herokuapp.com/',
+  loacalUrl: 'https://sms12-api.herokuapp.com/',
   login_url: 'https://apitest.atea.dk/TimeAppDev/services/'
 };
 
@@ -20,3 +20,5 @@ export const environment = {
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
 
 // serverUrl: 'http://18.218.8.173:3000/',
+// http://loacalUrl:3000/
+// http://localhost:3000/
