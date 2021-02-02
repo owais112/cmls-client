@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-// import {APP_BASE_HREF} from '@angular/common';
+import {APP_BASE_HREF} from '@angular/common';
 
 
 import { AppComponent } from './app.component';
@@ -23,7 +23,7 @@ import { AppRoutes } from './app.routing';
     CoreModule,
     SharedModule
   ],
-  bootstrap: [AppComponent]
-  // providers: [{provide: APP_BASE_HREF, useValue: '/'}]
+  bootstrap: [AppComponent],
+  providers: [{provide: APP_BASE_HREF, useValue: '/'}]
 })
 export class AppModule {}
