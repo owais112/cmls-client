@@ -3,9 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  serverUrl: 'https://sms12-api.herokuapp.com/',
-  loacalUrl: 'https://sms12-api.herokuapp.com/',
+  production: true,
+  serverUrl: 'https://sms12-api.herokuapp.com:3000/',
+  loacalUrl: 'https://sms12-api.herokuapp.com:3000/',
   login_url: 'https://apitest.atea.dk/TimeAppDev/services/'
 };
 
